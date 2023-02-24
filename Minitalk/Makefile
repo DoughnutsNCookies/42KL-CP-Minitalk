@@ -6,19 +6,17 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2023/02/24 12:25:04 by schuah           ###   ########.fr        #
+#    Updated: 2023/02/24 14:03:11 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER		=	server
-CLIENT		=	client
+CLIENT		=	client	
 LIBFT		=	libft.a
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
-# CFLAGS		+=	-fsanitize=address -g3
-SRCS_FILES	=	server \
-				client
+SRCS_FILES	=	server client
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 SRCS_DIR	=	srcs/
@@ -30,15 +28,13 @@ all:
 				make libft server client
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 server:			$(OBJS)
-				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) objs/$(SERVER).o -o $(SERVER)
+				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SERVER))) -o $(SERVER)
 
 client:			$(OBJS)
-				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) objs/$(CLIENT).o -o $(CLIENT)
-
-bonus:			all
+				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(addprefix $(OBJS_DIR), $(addsuffix .o, $(CLIENT))) -o $(CLIENT)
 
 libft:
 				make -C $(LIBFT_DIR)
@@ -53,4 +49,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all server client bonus libft clean fclean re
+.PHONY:			all libft clean fclean re
