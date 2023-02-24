@@ -6,7 +6,7 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2023/02/23 21:01:53 by schuah           ###   ########.fr        #
+#    Updated: 2023/02/24 12:25:04 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ OBJS_DIR	=	objs/
 all:			
 				mkdir -p $(OBJS_DIR)
 				make libft server client
-				./server
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
